@@ -1,0 +1,414 @@
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    padding: 0;
+    background: #e8ecf4;
+    font-family: "Georgia", "Times New Roman", serif;
+    color: #1a202c;
+    font-size: 10.5pt;
+    line-height: 1.5;
+}
+
+/* ── Toolbar ── */
+.toolbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background: #1a202c;
+    color: #e2e8f0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    font-size: 13px;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.toolbar-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.toolbar-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+/* ── Step-by-step print instructions ── */
+.print-steps {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.step {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    color: #a0aec0;
+    white-space: nowrap;
+}
+
+.step strong { color: #e2e8f0; }
+
+.step-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #4361ee;
+    color: #fff;
+    font-size: 9px;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.print-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 14px;
+    border: none;
+    border-radius: 6px;
+    background: #4361ee;
+    color: #fff;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.print-btn:hover { background: #3451d1; }
+
+/* ── Page wrap ── */
+.page-wrap {
+    padding: 56px 24px 40px;
+    display: flex;
+    justify-content: center;
+}
+
+/* ── Resume sheet (screen) ── */
+.resume {
+    background: #fff;
+    width: 8.5in;
+    min-height: 11in;
+    padding: 0.65in 0.75in;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+    border-radius: 2px;
+}
+
+.resume.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loading-msg {
+    color: #a0aec0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    font-size: 15px;
+}
+
+.error-msg {
+    color: #c53030;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    font-size: 14px;
+    text-align: center;
+    padding: 40px;
+}
+
+/* ── Resume header ── */
+.resume-header {
+    text-align: center;
+    border-bottom: 2px solid #1a202c;
+    padding-bottom: 10px;
+    margin-bottom: 16px;
+}
+
+.resume-name {
+    font-size: 20pt;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    margin: 0 0 4px;
+    color: #1a202c;
+    font-family: "Georgia", serif;
+    text-transform: uppercase;
+}
+
+.resume-contact {
+    font-size: 9pt;
+    color: #4a5568;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    letter-spacing: 0.02em;
+}
+
+/* ── Sections ── */
+.resume-section { margin-bottom: 14px; }
+
+.section-title {
+    font-size: 9.5pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #1a202c;
+    border-bottom: 1px solid #2d3748;
+    padding-bottom: 2px;
+    margin: 0 0 7px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+}
+
+.summary-text {
+    margin: 0;
+    font-size: 10pt;
+    color: #2d3748;
+    text-align: justify;
+}
+
+.section-list {
+    margin: 0;
+    padding-left: 17px;
+    list-style-type: disc;
+}
+
+.section-list li {
+    margin-bottom: 4px;
+    font-size: 10pt;
+    color: #2d3748;
+    padding-left: 2px;
+}
+
+.skills-text {
+    margin: 0 0 2px;
+    font-size: 10pt;
+    color: #2d3748;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+}
+
+/* ── Experience entries ── */
+.exp-entry  { margin-bottom: 10px; }
+
+.exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.exp-company {
+    font-size: 10.5pt;
+    color: #1a202c;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+}
+
+.exp-duration {
+    font-size: 9pt;
+    color: #4a5568;
+    white-space: nowrap;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+}
+
+.exp-title {
+    font-style: italic;
+    font-size: 10pt;
+    color: #2d3748;
+    margin: 1px 0 4px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+}
+
+/* ── Project entries ── */
+.proj-entry { margin-bottom: 8px; }
+
+.proj-name {
+    font-size: 10.5pt;
+    color: #1a202c;
+    margin-bottom: 3px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+}
+
+.proj-year {
+    font-size: 9pt;
+    color: #4a5568;
+    font-style: normal;
+    margin-left: 4px;
+}
+
+/* ── Education entries ── */
+.edu-entry  { margin-bottom: 8px; }
+
+.edu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.edu-institution {
+    font-size: 10.5pt;
+    color: #1a202c;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+}
+
+.edu-duration {
+    font-size: 9pt;
+    color: #4a5568;
+    white-space: nowrap;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+}
+
+.edu-degree {
+    font-size: 10pt;
+    color: #2d3748;
+    margin-top: 1px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+}
+
+/* ── Pipe separator in contact line ── */
+.pipe { color: #718096; padding: 0 2px; }
+
+/* ── Links ── */
+.resume a {
+    color: #2b4acb;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    overflow-wrap: break-word; /* break only when no other option — avoids per-character breaks in PDF */
+}
+
+.resume a:hover { color: #1a33a0; }
+
+/* ── Pre-print measurement class ─────────────────────────────────────────────
+   Applied briefly by JS (applyPrintZoom) before window.print() so we can
+   measure the element's height *after* print CSS is applied.  Without this,
+   scrollHeight is measured with screen CSS (larger line-height + padding),
+   causing zoom to over-shrink the content and leaving a big blank footer gap.
+   Every rule here must mirror the matching rule in @media print below. */
+.resume.pre-print-measure {
+    padding: 0.45in 0.6in !important;
+    line-height: 1.3 !important;
+}
+.resume.pre-print-measure .summary-text { line-height: 1.3 !important; }
+.resume.pre-print-measure .section-list li {
+    line-height: 1.3 !important;
+    margin-bottom: 2px !important;
+}
+.resume.pre-print-measure .skills-text     { line-height: 1.3 !important; margin-bottom: 1px !important; }
+.resume.pre-print-measure .resume-section  { margin-bottom: 8px !important; }
+.resume.pre-print-measure .resume-header   { margin-bottom: 10px !important; padding-bottom: 6px !important; }
+.resume.pre-print-measure .section-title   { margin-bottom: 5px !important; }
+.resume.pre-print-measure .exp-entry       { margin-bottom: 7px !important; }
+.resume.pre-print-measure .exp-title       { margin: 1px 0 2px !important; }
+.resume.pre-print-measure .proj-entry      { margin-bottom: 6px !important; }
+.resume.pre-print-measure .proj-name       { margin-bottom: 2px !important; }
+.resume.pre-print-measure .edu-entry       { margin-bottom: 6px !important; }
+
+/* ── Print styles ── */
+@media print {
+
+    /* margin: 0 removes the space Chrome uses for its built-in
+       date / title / URL / page-number decorations — they vanish. */
+    @page {
+        size: letter;
+        margin: 0;
+    }
+
+    body {
+        background: #fff;
+        padding: 0;
+        /* font/line-height stay the same — JS zoom handles fit */
+    }
+
+    .no-print { display: none !important; }
+
+    .page-wrap {
+        padding: 0;
+        display: block;
+    }
+
+    /* JS applyPrintZoom() sets .resume's zoom before window.print() fires.
+       We add padding here to replace the @page margins we zeroed out.
+       min-height: 11in is intentionally NOT overridden — it keeps the
+       content filling a full page for short resumes. */
+    .resume {
+        width: 100%;
+        padding: 0.45in 0.6in;
+        box-shadow: none;
+        border-radius: 0;
+    }
+
+    /* ── Tighter line-height & spacing for print ── */
+    /* Screen uses 1.5 which creates large inter-line gaps in bullets;
+       1.3 is standard for professional print resumes. */
+    body                   { line-height: 1.3; }
+    .summary-text          { line-height: 1.3; }
+    .section-list li       { line-height: 1.3; margin-bottom: 2px; }
+    .skills-text           { line-height: 1.3; margin-bottom: 1px; }
+    .resume-section        { margin-bottom: 8px; }
+    .resume-header         { margin-bottom: 10px; padding-bottom: 6px; }
+    .section-title         { margin-bottom: 5px; }
+    .exp-entry             { margin-bottom: 7px; }
+    .exp-title             { margin: 1px 0 2px; }
+    .proj-entry            { margin-bottom: 6px; }
+    .proj-name             { margin-bottom: 2px; }
+    .edu-entry             { margin-bottom: 6px; }
+
+    /* ── Page-break rules ── */
+
+    /* Section title must stay with at least its first bullet */
+    .section-title {
+        break-after: avoid;
+        page-break-after: avoid;
+    }
+
+    .resume-header {
+        break-after: avoid;
+        page-break-after: avoid;
+    }
+
+    /* Sections can span pages; only individual bullets stay together */
+    .resume-section {
+        break-inside: auto;
+        page-break-inside: auto;
+    }
+
+    .exp-entry {
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+
+    .section-list li {
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+
+    .summary-text {
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+
+    /* Links in print: dark and never break between characters.
+       word-break: break-all (even via inheritance) causes Chrome's PDF renderer
+       to insert phantom spaces between every character inside <a> tags. */
+    .resume a {
+        color: #1a202c;
+        text-decoration: underline;
+        word-break: normal;
+        overflow-wrap: break-word;
+    }
+}

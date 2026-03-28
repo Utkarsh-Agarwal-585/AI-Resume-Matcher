@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rewritten Resume — AI Resume Matcher</title>
+    <link rel="stylesheet" href="resume-preview.css">
+</head>
+<body>
+
+    <!-- Toolbar (hidden on print) -->
+    <div class="toolbar no-print">
+        <div class="toolbar-left">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            AI Resume Matcher — Rewritten Resume
+        </div>
+        <div class="toolbar-right">
+            <div class="print-steps no-print">
+                <span class="step">
+                    <span class="step-num">1</span>
+                    Click the button →
+                </span>
+                <span class="step">
+                    <span class="step-num">2</span>
+                    Open <strong>More settings</strong>
+                </span>
+                <span class="step">
+                    <span class="step-num">3</span>
+                    Uncheck <strong>Headers and footers</strong>
+                </span>
+                <span class="step">
+                    <span class="step-num">4</span>
+                    Set <strong>Destination → Save as PDF</strong>
+                </span>
+            </div>
+            <button id="printBtn" class="print-btn">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+                Print / Save as PDF
+            </button>
+        </div>
+    </div>
+
+    <!-- Resume sheet -->
+    <div class="page-wrap">
+        <div id="resume" class="resume loading">
+            <div class="loading-msg">Loading resume…</div>
+        </div>
+    </div>
+
+    <script src="resume-preview.js"></script>
+</body>
+</html>
