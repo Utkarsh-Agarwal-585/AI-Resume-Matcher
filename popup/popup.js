@@ -137,16 +137,62 @@ async function extractJDFromTab(tabId) {
     const [result] = await chrome.scripting.executeScript({
         target: { tabId },
         func: () => {
+            const normalize = text => text?.replace(/\s+/g, " ").trim();
+
             const selectors = [
                 ".jobs-description__content",
                 "#job-details",
                 ".description",
+                ".show-more-less-html__markup",
+                ".jobs-unified-description__text",
+                ".description__text",
+                ".job-description__content",
+                "[data-test-job-description]",
+                "[aria-label*='job description']",
+                "[aria-label*='Job description']",
             ];
             for (const sel of selectors) {
                 const el = document.querySelector(sel);
-                if (el) return el.innerText;
+                const text = normalize(el?.innerText);
+                if (text) return text;
             }
-            return "";
+
+            for (const script of Array.from(document.querySelectorAll("script[type='application/ld+json']"))) {
+                try {
+                    const json = JSON.parse(script.textContent || "");
+                    const items = Array.isArray(json) ? json : [json];
+                    for (const item of items) {
+                        if (item?.['@type'] === 'JobPosting' && item.description) {
+                            return normalize(typeof item.description === 'string'
+                                ? item.description
+                                : item.description?.text || "");
+                        }
+                    }
+                } catch (_) {
+                    continue;
+                }
+            }
+
+            const keywordRegex = /\b(job description|responsibilit|qualification|requirement|about the role|what you will do|what youll do|role description|responsibilities)\b/i;
+            const allElements = Array.from(document.querySelectorAll("section, article, div"));
+            const scored = allElements
+                .map(el => {
+                    const text = normalize(el.innerText);
+                    const meta = `${el.id || ''} ${el.className || ''}`;
+                    let score = text.length;
+                    if (keywordRegex.test(text)) score += 1000;
+                    if (/description|jd|responsibilit|requirement|qualif/i.test(meta)) score += 500;
+                    return { text, score };
+                })
+                .filter(item => item.text.length > 200)
+                .sort((a, b) => b.score - a.score);
+            if (scored.length) return scored[0].text;
+
+            const fallback = allElements
+                .map(el => normalize(el.innerText))
+                .filter(text => text.length > 200)
+                .sort((a, b) => b.length - a.length);
+            return fallback[0] || "";
         },
     });
     return result?.result ?? "";
